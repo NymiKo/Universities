@@ -1,15 +1,25 @@
 package com.easyprog.android.universities.activity
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.easyprog.android.universities.R
+import com.easyprog.android.universities.databinding.ActivityMainBinding
 import com.easyprog.android.universities.fragments.universities_list.UniversitiesListFragment
 
 class MainActivity : AppCompatActivity() {
+
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Universities)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        _binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+        setupToolbar()
 
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
 
@@ -18,6 +28,12 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .add(R.id.fragment_container, fragment)
                 .commit()
+        }
+    }
+
+    private fun setupToolbar() {
+        binding.collapsingToolbar.apply {
+            setTitle(R.string.app_name)
         }
     }
 }
