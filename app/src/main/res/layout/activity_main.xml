@@ -29,7 +29,9 @@
                 android:fontFamily="sans-serif-medium"
                 android:layout_margin="@dimen/medium_margin"
                 android:text="@string/universities_list"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textColor="?attr/colorSecondaryVariant"
+                app:layout_collapseMode="parallax"/>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
