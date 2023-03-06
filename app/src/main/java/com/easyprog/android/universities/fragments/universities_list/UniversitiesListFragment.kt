@@ -4,10 +4,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.easyprog.android.universities.R
+import com.easyprog.android.universities.activity.MainActivity
 import com.easyprog.android.universities.adapters.UniversitiesListAdapter
+import com.easyprog.android.universities.adapters.UniversityActionListener
 import com.easyprog.android.universities.databinding.FragmentUniversitiesListBinding
 import com.easyprog.android.universities.fragments.BaseFragment
+import com.easyprog.android.universities.fragments.university_info.UniversityInfoFragment
 import com.easyprog.android.universities.models.University
+import com.easyprog.android.universities.utils.openFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -42,7 +47,11 @@ class UniversitiesListFragment :
     }
 
     private fun setupRecyclerView(list: List<University>) {
-        _adapter = UniversitiesListAdapter().apply {
+        _adapter = UniversitiesListAdapter(object : UniversityActionListener{
+            override fun onUniversityClick(idUniversity: Int) {
+                openUniversityInfoFragment(idUniversity)
+            }
+        }).apply {
             universitiesList = list
         }
         binding.recyclerViewUniversities.apply {
@@ -51,8 +60,13 @@ class UniversitiesListFragment :
         }
     }
 
+    private fun openUniversityInfoFragment(id: Int) {
+        val fragment = UniversityInfoFragment.newInstance(id)
+        (requireActivity() as MainActivity).openFragment(fragment)
+    }
+
     override fun onDestroyView() {
-        super.onDestroyView()
         binding.recyclerViewUniversities.adapter = null
+        super.onDestroyView()
     }
 }
