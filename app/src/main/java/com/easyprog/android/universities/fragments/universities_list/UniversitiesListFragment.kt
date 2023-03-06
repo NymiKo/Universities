@@ -51,4 +51,8 @@ class UniversitiesListFragment :
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.recyclerViewUniversities.adapter = null
+    }
 }
