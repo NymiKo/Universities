@@ -17,13 +17,17 @@ abstract class BaseFragment<T : ViewBinding>(private val bindingInflater: (Layou
 
     protected lateinit var _db: DatabaseReference
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        _db = FirebaseDatabase.getInstance().reference
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         _binding = bindingInflater(inflater)
-        _db = FirebaseDatabase.getInstance().reference
         return binding.root
     }
 

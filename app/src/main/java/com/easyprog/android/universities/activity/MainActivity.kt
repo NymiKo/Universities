@@ -18,8 +18,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
-        setupToolbar()
 
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
 
@@ -28,12 +26,6 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .add(R.id.fragment_container, fragment)
                 .commit()
-        }
-    }
-
-    private fun setupToolbar() {
-        binding.collapsingToolbar.apply {
-            setTitle(R.string.app_name)
         }
     }
 }

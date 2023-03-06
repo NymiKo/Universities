@@ -2,7 +2,9 @@ package com.easyprog.android.universities.fragments.universities_list
 
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.easyprog.android.universities.R
 import com.easyprog.android.universities.activity.MainActivity
@@ -26,6 +28,7 @@ class UniversitiesListFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupToolbar()
         loadUniversities()
     }
 
@@ -35,23 +38,27 @@ class UniversitiesListFragment :
                 snapshot.children.mapNotNull {
                     list.add(it.getValue<University>()!!)
                 }
-                Log.e("DATA", list.toString())
-                setupRecyclerView(list.toList())
+                setupRecyclerView()
             }
 
             override fun onCancelled(error: DatabaseError) {
 
             }
         }
-        _db.child("universities").addListenerForSingleValueEvent(valueEventListener)
+        if (list.isEmpty()) {
+            _db.child("universities").addListenerForSingleValueEvent(valueEventListener)
+        } else {
+            setupRecyclerView()
+        }
     }
 
-    private fun setupRecyclerView(list: List<University>) {
-        _adapter = UniversitiesListAdapter(object : UniversityActionListener{
+    private fun setupRecyclerView() {
+        val actionListener = object : UniversityActionListener{
             override fun onUniversityClick(idUniversity: Int) {
                 openUniversityInfoFragment(idUniversity)
             }
-        }).apply {
+        }
+        _adapter = UniversitiesListAdapter(actionListener).apply {
             universitiesList = list
         }
         binding.recyclerViewUniversities.apply {
@@ -63,6 +70,12 @@ class UniversitiesListFragment :
     private fun openUniversityInfoFragment(id: Int) {
         val fragment = UniversityInfoFragment.newInstance(id)
         (requireActivity() as MainActivity).openFragment(fragment)
+    }
+
+    private fun setupToolbar() {
+        binding.collapsingToolbar.apply {
+            title = getString(R.string.app_name)
+        }
     }
 
     override fun onDestroyView() {
