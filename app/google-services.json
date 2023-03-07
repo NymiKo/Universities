@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "153552773496",
+    "firebase_url": "https://genshin-backend-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "genshin-backend",
+    "storage_bucket": "genshin-backend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153552773496:android:e9c35c489f3e7e59b9e88d",
+        "android_client_info": {
+          "package_name": "com.easyprog.android.universities"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "153552773496-7me2qn4bsskpqj88rudta69oqdkdo0rh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDze_YUwL9m_bHX18TetgpbaFHKh_2Jb6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "153552773496-7me2qn4bsskpqj88rudta69oqdkdo0rh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

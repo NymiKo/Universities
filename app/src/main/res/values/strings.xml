@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">Universities</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">Университеты</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="universities_list">Список университетов</string>
+    <string name="location">Местоположение: %1$s</string>
+    <string name="entrance_points">Вступительные баллы</string>
+    <string name="budget_places">Бюджетные места</string>
 </resources>
