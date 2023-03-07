@@ -72,6 +72,7 @@
         android:layout_height="0dp"
         android:background="@drawable/content_container"
         android:padding="24dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,8 +84,17 @@
             android:fontFamily="sans-serif-medium"
             android:text="@string/entrance_points"
             android:textColor="?attr/colorOnSecondary"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_entrance_points_by_specialty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="@dimen/very_small_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:textColor="?attr/colorSecondary"
+            android:textSize="16sp"/>
 
     </LinearLayout>
 

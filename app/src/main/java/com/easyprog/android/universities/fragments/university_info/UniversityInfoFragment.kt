@@ -1,18 +1,22 @@
 package com.easyprog.android.universities.fragments.university_info
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.core.text.HtmlCompat
 import com.easyprog.android.universities.R
 import com.easyprog.android.universities.activity.MainActivity
 import com.easyprog.android.universities.databinding.FragmentUniversityInfoBinding
 import com.easyprog.android.universities.fragments.BaseFragment
 import com.easyprog.android.universities.models.University
 import com.easyprog.android.universities.models.UniversityInfo
+import com.easyprog.android.universities.utils.helpers.ValueEventListenerHelper
 import com.easyprog.android.universities.utils.load
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -36,18 +40,17 @@ class UniversityInfoFragment : BaseFragment<FragmentUniversityInfoBinding>(Fragm
     }
 
     private fun loadContent() {
-        val valueEventListener = object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val university = snapshot.getValue<UniversityInfo>()
-                binding.apply {
-                    imageUniversity.load(university?.image)
-                    textUniversityName.text = university?.name
-                    textUniversityLocation.text = getString(R.string.location, university?.location)
+        val valueEventListener = ValueEventListenerHelper { snapshot ->
+            val university = snapshot.getValue<UniversityInfo>()
+            binding.apply {
+                imageUniversity.load(university?.image)
+                textUniversityName.text = university?.name
+                textUniversityLocation.text = getString(R.string.location, university?.location)
+                textEntrancePointsBySpecialty.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                     Html.fromHtml(university?.scores, HtmlCompat.FROM_HTML_MODE_LEGACY)
+                } else {
+                    Html.fromHtml(university?.scores)
                 }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
             }
         }
         _db.child("info").child(idUniversity.toString()).addListenerForSingleValueEvent(valueEventListener)

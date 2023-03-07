@@ -14,6 +14,7 @@ import com.easyprog.android.universities.databinding.FragmentUniversitiesListBin
 import com.easyprog.android.universities.fragments.BaseFragment
 import com.easyprog.android.universities.fragments.university_info.UniversityInfoFragment
 import com.easyprog.android.universities.models.University
+import com.easyprog.android.universities.utils.helpers.ValueEventListenerHelper
 import com.easyprog.android.universities.utils.openFragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -33,18 +34,13 @@ class UniversitiesListFragment :
     }
 
     private fun loadUniversities() {
-        val valueEventListener = object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                snapshot.children.mapNotNull {
-                    list.add(it.getValue<University>()!!)
-                }
-                setupRecyclerView()
+        val valueEventListener = ValueEventListenerHelper { snapshot ->
+            snapshot.children.mapNotNull {
+                list.add(it.getValue<University>()!!)
             }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
+            setupRecyclerView()
         }
+
         if (list.isEmpty()) {
             _db.child("universities").addListenerForSingleValueEvent(valueEventListener)
         } else {

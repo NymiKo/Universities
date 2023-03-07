@@ -4,4 +4,5 @@
     <string name="universities_list">Список университетов</string>
     <string name="location">Местоположение: %1$s</string>
     <string name="entrance_points">Вступительные баллы</string>
+    <string name="entrance_points_for_subjects">Вступительные баллы</string>
 </resources>
