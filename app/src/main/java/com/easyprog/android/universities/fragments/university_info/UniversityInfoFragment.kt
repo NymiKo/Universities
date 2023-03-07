@@ -16,6 +16,7 @@ import com.easyprog.android.universities.databinding.FragmentUniversityInfoBindi
 import com.easyprog.android.universities.fragments.BaseFragment
 import com.easyprog.android.universities.models.University
 import com.easyprog.android.universities.models.UniversityInfo
+import com.easyprog.android.universities.utils.fromHtmlToString
 import com.easyprog.android.universities.utils.helpers.ValueEventListenerHelper
 import com.easyprog.android.universities.utils.load
 import com.google.firebase.database.DataSnapshot
@@ -46,11 +47,8 @@ class UniversityInfoFragment : BaseFragment<FragmentUniversityInfoBinding>(Fragm
                 imageUniversity.load(university?.image)
                 textUniversityName.text = university?.name
                 textUniversityLocation.text = getString(R.string.location, university?.location)
-                textEntrancePointsBySpecialty.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                     Html.fromHtml(university?.scores, HtmlCompat.FROM_HTML_MODE_LEGACY)
-                } else {
-                    Html.fromHtml(university?.scores)
-                }
+                textEntrancePointsBySpecialty.text = university?.scores?.fromHtmlToString()
+                textBudgetPlaces.text = university?.budget_places?.fromHtmlToString()
             }
         }
         _db.child("info").child(idUniversity.toString()).addListenerForSingleValueEvent(valueEventListener)

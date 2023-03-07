@@ -67,35 +67,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/content_container"
-        android:padding="24dp"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/entrance_points"
-            android:textColor="?attr/colorOnSecondary"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/content_container"
+            android:orientation="vertical"
+            android:padding="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view">
 
-        <TextView
-            android:id="@+id/text_entrance_points_by_specialty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:lineSpacingExtra="@dimen/very_small_margin"
-            android:layout_marginTop="@dimen/small_margin"
-            android:textColor="?attr/colorSecondary"
-            android:textSize="16sp"/>
+            <TextView
+                style="@style/text_content_header_style"
+                android:text="@string/entrance_points" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/text_entrance_points_by_specialty"
+                style="@style/text_content_style" />
+
+            <TextView
+                style="@style/text_content_header_style"
+                android:text="@string/budget_places" />
+
+            <TextView
+                android:id="@+id/text_budget_places"
+                style="@style/text_content_style" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
