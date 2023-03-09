@@ -49,6 +49,8 @@ class UniversityInfoFragment : BaseFragment<FragmentUniversityInfoBinding>(Fragm
                 textUniversityLocation.text = getString(R.string.location, university?.location)
                 textEntrancePointsBySpecialty.text = university?.scores?.fromHtmlToString()
                 textBudgetPlaces.text = university?.budget_places?.fromHtmlToString()
+                textDormitory.text = university?.dormitory?.fromHtmlToString()
+                textDateOfApplicationSubmission.text = university?.date_application?.fromHtmlToString()
             }
         }
         _db.child("info").child(idUniversity.toString()).addListenerForSingleValueEvent(valueEventListener)
