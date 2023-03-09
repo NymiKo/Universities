@@ -5,5 +5,7 @@ data class UniversityInfo(
     val name: String = "",
     val location: String = "",
     val scores: String = "",
-    val budget_places: String = ""
+    val budget_places: String = "",
+    val dormitory: String = "",
+    val date_application: String = ""
 )

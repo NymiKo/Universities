@@ -103,6 +103,22 @@
                 android:id="@+id/text_budget_places"
                 style="@style/text_content_style" />
 
+            <TextView
+                style="@style/text_content_header_style"
+                android:text="@string/dormitory" />
+
+            <TextView
+                android:id="@+id/text_dormitory"
+                style="@style/text_content_style" />
+
+            <TextView
+                style="@style/text_content_header_style"
+                android:text="@string/date_of_application_submission" />
+
+            <TextView
+                android:id="@+id/text_date_of_application_submission"
+                style="@style/text_content_style" />
+
         </LinearLayout>
 
     </ScrollView>
