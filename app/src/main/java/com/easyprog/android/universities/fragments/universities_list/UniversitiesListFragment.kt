@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.easyprog.android.universities.R
 import com.easyprog.android.universities.activity.MainActivity
@@ -13,7 +15,7 @@ import com.easyprog.android.universities.adapters.UniversityActionListener
 import com.easyprog.android.universities.databinding.FragmentUniversitiesListBinding
 import com.easyprog.android.universities.fragments.BaseFragment
 import com.easyprog.android.universities.fragments.university_info.UniversityInfoFragment
-import com.easyprog.android.universities.models.University
+import com.easyprog.android.data.models.University
 import com.easyprog.android.universities.utils.helpers.ValueEventListenerHelper
 import com.easyprog.android.universities.utils.openFragment
 import com.google.firebase.database.DataSnapshot
@@ -27,35 +29,30 @@ class UniversitiesListFragment :
     private val list = mutableListOf<University>()
     private lateinit var _adapter: UniversitiesListAdapter
 
+    private val viewModel: UniversitiesListViewModel by lazy { ViewModelProvider(this)[UniversitiesListViewModel::class.java] }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getUniversitiesList()
         setupToolbar()
         loadUniversities()
     }
 
     private fun loadUniversities() {
-        val valueEventListener = ValueEventListenerHelper { snapshot ->
-            snapshot.children.mapNotNull {
-                list.add(it.getValue<University>()!!)
-            }
-            setupRecyclerView()
-        }
-
-        if (list.isEmpty()) {
-            _db.child("universities").addListenerForSingleValueEvent(valueEventListener)
-        } else {
-            setupRecyclerView()
+        viewModel.universitiesList.observe(viewLifecycleOwner) {
+            setupRecyclerView(it)
+            Log.e("LIST", it.toString())
         }
     }
 
-    private fun setupRecyclerView() {
+    private fun setupRecyclerView(universityList: List<University>) {
         val actionListener = object : UniversityActionListener{
             override fun onUniversityClick(idUniversity: Int) {
                 openUniversityInfoFragment(idUniversity)
             }
         }
         _adapter = UniversitiesListAdapter(actionListener).apply {
-            universitiesList = list
+            universitiesList = universityList
         }
         binding.recyclerViewUniversities.apply {
             layoutManager = LinearLayoutManager(requireContext())

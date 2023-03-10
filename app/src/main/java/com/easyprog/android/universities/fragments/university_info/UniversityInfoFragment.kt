@@ -14,8 +14,8 @@ import com.easyprog.android.universities.R
 import com.easyprog.android.universities.activity.MainActivity
 import com.easyprog.android.universities.databinding.FragmentUniversityInfoBinding
 import com.easyprog.android.universities.fragments.BaseFragment
-import com.easyprog.android.universities.models.University
-import com.easyprog.android.universities.models.UniversityInfo
+import com.easyprog.android.data.models.University
+import com.easyprog.android.data.models.UniversityInfo
 import com.easyprog.android.universities.utils.fromHtmlToString
 import com.easyprog.android.universities.utils.helpers.ValueEventListenerHelper
 import com.easyprog.android.universities.utils.load

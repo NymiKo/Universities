@@ -1,4 +1,4 @@
-package com.easyprog.android.universities.models
+package com.easyprog.android.data.models
 
 data class UniversityInfo(
     val image: String = "",
