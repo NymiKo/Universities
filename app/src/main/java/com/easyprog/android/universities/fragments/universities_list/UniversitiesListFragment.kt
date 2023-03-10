@@ -1,13 +1,10 @@
 package com.easyprog.android.universities.fragments.universities_list
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.easyprog.android.data.Result
 import com.easyprog.android.universities.R
 import com.easyprog.android.universities.activity.MainActivity
 import com.easyprog.android.universities.adapters.UniversitiesListAdapter
@@ -16,17 +13,12 @@ import com.easyprog.android.universities.databinding.FragmentUniversitiesListBin
 import com.easyprog.android.universities.fragments.BaseFragment
 import com.easyprog.android.universities.fragments.university_info.UniversityInfoFragment
 import com.easyprog.android.data.models.University
-import com.easyprog.android.universities.utils.helpers.ValueEventListenerHelper
 import com.easyprog.android.universities.utils.openFragment
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.getValue
+import com.easyprog.android.universities.utils.showSnackbar
 
 class UniversitiesListFragment :
     BaseFragment<FragmentUniversitiesListBinding>(FragmentUniversitiesListBinding::inflate) {
 
-    private val list = mutableListOf<University>()
     private lateinit var _adapter: UniversitiesListAdapter
 
     private val viewModel: UniversitiesListViewModel by lazy { ViewModelProvider(this)[UniversitiesListViewModel::class.java] }
@@ -39,9 +31,18 @@ class UniversitiesListFragment :
     }
 
     private fun loadUniversities() {
-        viewModel.universitiesList.observe(viewLifecycleOwner) {
-            setupRecyclerView(it)
-            Log.e("LIST", it.toString())
+        viewModel.dataState.observe(viewLifecycleOwner) {
+            when(it) {
+                is Result.SUCCESS -> {
+                    setupRecyclerView(it.data)
+                    binding.progress.visibility = View.GONE
+                }
+                is Result.ERROR -> {
+                    binding.progress.visibility = View.GONE
+                    showSnackbar(binding.root, R.string.error_data_loading)
+                }
+                Result.LOADING -> binding.progress.visibility = View.VISIBLE
+            }
         }
     }
 

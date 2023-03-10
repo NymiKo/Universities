@@ -53,4 +53,20 @@
         tools:listitem="@layout/item_university"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
+    <FrameLayout
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorPrimary"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ProgressBar
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:progressBackgroundTint="?attr/colorOnSecondary"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
