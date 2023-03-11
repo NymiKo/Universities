@@ -11,7 +11,8 @@ import com.easyprog.android.domain.UniversitiesListRepository
 import com.easyprog.android.domain.implementation.UniversitiesListRepositoryImpl
 import kotlinx.coroutines.launch
 
-typealias ResultList<T> = Result<List<T>>
+typealias MutableLiveResult<T> = MutableLiveData<Result<T>>
+typealias LiveResult<T> = LiveData<Result<T>>
 
 class UniversitiesListViewModel : ViewModel() {
 
@@ -19,11 +20,13 @@ class UniversitiesListViewModel : ViewModel() {
         FirebaseSource()
     )
 
-    private val _dataState = MutableLiveData<ResultList<University>>()
-    val dataState: LiveData<ResultList<University>> = _dataState
+    private val _viewState = MutableLiveResult<List<University>>()
+    val viewState: LiveResult<List<University>> = _viewState
 
-    fun getUniversitiesList() = viewModelScope.launch {
-        _dataState.value = Result.LOADING
-        _dataState.value = repository.getUniversitiesList()
+    fun getUniversitiesList() {
+        _viewState.value = Result.LOADING
+        viewModelScope.launch {
+            _viewState.value = repository.getUniversitiesList()
+        }
     }
 }

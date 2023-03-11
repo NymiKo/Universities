@@ -31,10 +31,10 @@ class UniversitiesListFragment :
     }
 
     private fun loadUniversities() {
-        viewModel.dataState.observe(viewLifecycleOwner) {
-            when(it) {
+        viewModel.viewState.observe(viewLifecycleOwner) { result ->
+            when(result) {
                 is Result.SUCCESS -> {
-                    setupRecyclerView(it.data)
+                    setupRecyclerView(result.data)
                     binding.progress.visibility = View.GONE
                 }
                 is Result.ERROR -> {
