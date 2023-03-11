@@ -2,6 +2,7 @@ package com.easyprog.android.universities.activity
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.WindowManager
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.easyprog.android.universities.R
@@ -18,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
-
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
 
         if (currentFragment == null) {

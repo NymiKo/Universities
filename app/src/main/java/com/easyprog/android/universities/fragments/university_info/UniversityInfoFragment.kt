@@ -1,5 +1,6 @@
 package com.easyprog.android.universities.fragments.university_info
 
+import android.app.StatusBarManager
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
@@ -30,6 +31,9 @@ class UniversityInfoFragment :
 
     private fun setupToolbar() {
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+//        binding.collapsingToolbar.apply {
+//            title = getString(R.string.app_name)
+//        }
     }
 
     private fun loadContent() {
@@ -53,7 +57,8 @@ class UniversityInfoFragment :
     private fun setUniversityInfo(university: UniversityInfo) {
         binding.apply {
             imageUniversity.load(university.image)
-            textUniversityName.text = university.name
+            collapsingToolbar.title = university.name
+            //textUniversityName.text = university.name
             textUniversityLocation.text = getString(R.string.location, university.location)
             textEntrancePointsBySpecialty.text = university.scores.fromHtmlToString()
             textBudgetPlaces.text = university.budget_places.fromHtmlToString()
