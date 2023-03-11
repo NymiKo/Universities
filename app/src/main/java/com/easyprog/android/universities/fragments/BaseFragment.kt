@@ -15,13 +15,6 @@ abstract class BaseFragment<T : ViewBinding>(private val bindingInflater: (Layou
     private var _binding: T? = null
     protected val binding get() = _binding!!
 
-    protected lateinit var _db: DatabaseReference
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        _db = FirebaseDatabase.getInstance().reference
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
