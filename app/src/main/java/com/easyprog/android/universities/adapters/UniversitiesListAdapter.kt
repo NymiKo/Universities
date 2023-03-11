@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.easyprog.android.universities.adapters.UniversitiesListAdapter.*
 import com.easyprog.android.universities.databinding.ItemUniversityBinding
-import com.easyprog.android.universities.models.University
+import com.easyprog.android.data.models.University
 import com.easyprog.android.universities.utils.load
 
 class UniversitiesListAdapter(private val actionListener: UniversityActionListener) :

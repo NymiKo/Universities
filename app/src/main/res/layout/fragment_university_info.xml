@@ -68,6 +68,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
+        android:id="@+id/scroll_content_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -103,8 +104,40 @@
                 android:id="@+id/text_budget_places"
                 style="@style/text_content_style" />
 
+            <TextView
+                style="@style/text_content_header_style"
+                android:text="@string/dormitory" />
+
+            <TextView
+                android:id="@+id/text_dormitory"
+                style="@style/text_content_style" />
+
+            <TextView
+                style="@style/text_content_header_style"
+                android:text="@string/date_of_application_submission" />
+
+            <TextView
+                android:id="@+id/text_date_of_application_submission"
+                style="@style/text_content_style" />
+
         </LinearLayout>
 
     </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorPrimary"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ProgressBar
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:progressBackgroundTint="?attr/colorOnSecondary"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
