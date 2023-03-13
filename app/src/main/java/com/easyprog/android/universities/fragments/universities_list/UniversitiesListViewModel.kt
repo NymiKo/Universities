@@ -1,6 +1,5 @@
 package com.easyprog.android.universities.fragments.universities_list
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,7 +23,11 @@ class UniversitiesListViewModel : ViewModel() {
     private val _viewState = MutableLiveResult<List<University>>()
     val viewState: LiveResult<List<University>> = _viewState
 
-    fun getUniversitiesList() {
+    init {
+        getUniversitiesList()
+    }
+
+    private fun getUniversitiesList() {
         if (_viewState.value == null) {
             _viewState.value = Result.LOADING
             viewModelScope.launch {
