@@ -14,11 +14,7 @@ import kotlinx.coroutines.launch
 typealias MutableLiveResult<T> = MutableLiveData<Result<T>>
 typealias LiveResult<T> = LiveData<Result<T>>
 
-class UniversitiesListViewModel : ViewModel() {
-
-    private val repository: UniversityRepository = UniversityRepositoryImpl(
-        FirebaseSource()
-    )
+class UniversitiesListViewModel(private val repository: UniversityRepository) : ViewModel() {
 
     private val _viewState = MutableLiveResult<List<University>>()
     val viewState: LiveResult<List<University>> = _viewState

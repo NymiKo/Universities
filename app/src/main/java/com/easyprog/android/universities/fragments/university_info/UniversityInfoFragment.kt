@@ -2,12 +2,14 @@ package com.easyprog.android.universities.fragments.university_info
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.easyprog.android.data.Result
 import com.easyprog.android.data.models.UniversityInfo
 import com.easyprog.android.universities.R
 import com.easyprog.android.universities.databinding.FragmentUniversityInfoBinding
 import com.easyprog.android.universities.fragments.base.BaseFragment
+import com.easyprog.android.universities.fragments.base.factory
 import com.easyprog.android.universities.utils.fromHtmlToString
 import com.easyprog.android.universities.utils.load
 import com.easyprog.android.universities.utils.showSnackbar
@@ -19,7 +21,7 @@ class UniversityInfoFragment :
 
     private val idUniversity: Int get() = requireArguments().getInt(ARG_UNIVERSITY_ID)
 
-    private val viewModel: UniversityInfoViewModel by lazy { ViewModelProvider(this)[UniversityInfoViewModel::class.java] }
+    private val viewModel: UniversityInfoViewModel by viewModels { factory() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

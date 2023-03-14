@@ -7,12 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.easyprog.android.data.FirebaseSource
 import com.easyprog.android.data.Result
 import com.easyprog.android.data.models.UniversityInfo
+import com.easyprog.android.domain.UniversityRepository
 import com.easyprog.android.domain.implementation.UniversityRepositoryImpl
 import kotlinx.coroutines.launch
 
-class UniversityInfoViewModel : ViewModel() {
-
-    private val repository = UniversityRepositoryImpl(FirebaseSource())
+class UniversityInfoViewModel(private val repository: UniversityRepository) : ViewModel() {
 
     private val _viewState = MutableLiveData<Result<UniversityInfo>>()
     val viewState: LiveData<Result<UniversityInfo>> = _viewState

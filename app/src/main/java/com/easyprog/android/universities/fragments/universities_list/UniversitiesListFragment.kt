@@ -2,6 +2,7 @@ package com.easyprog.android.universities.fragments.universities_list
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.easyprog.android.data.Result
@@ -13,6 +14,7 @@ import com.easyprog.android.universities.databinding.FragmentUniversitiesListBin
 import com.easyprog.android.universities.fragments.base.BaseFragment
 import com.easyprog.android.universities.fragments.university_info.UniversityInfoFragment
 import com.easyprog.android.data.models.University
+import com.easyprog.android.universities.fragments.base.factory
 import com.easyprog.android.universities.utils.openFragment
 import com.easyprog.android.universities.utils.showSnackbar
 
@@ -21,7 +23,7 @@ class UniversitiesListFragment :
 
     private lateinit var _adapter: UniversitiesListAdapter
 
-    private val viewModel: UniversitiesListViewModel by lazy { ViewModelProvider(this)[UniversitiesListViewModel::class.java] }
+    private val viewModel: UniversitiesListViewModel by viewModels { factory() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
