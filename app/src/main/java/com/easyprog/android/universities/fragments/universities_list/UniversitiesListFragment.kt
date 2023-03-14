@@ -10,7 +10,7 @@ import com.easyprog.android.universities.activity.MainActivity
 import com.easyprog.android.universities.adapters.UniversitiesListAdapter
 import com.easyprog.android.universities.adapters.UniversityActionListener
 import com.easyprog.android.universities.databinding.FragmentUniversitiesListBinding
-import com.easyprog.android.universities.fragments.BaseFragment
+import com.easyprog.android.universities.fragments.base.BaseFragment
 import com.easyprog.android.universities.fragments.university_info.UniversityInfoFragment
 import com.easyprog.android.data.models.University
 import com.easyprog.android.universities.utils.openFragment
