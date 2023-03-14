@@ -10,17 +10,28 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textColor">?attr/colorOnSecondary</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="text_content_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginBottom">@dimen/medium_margin</item>
         <item name="android:lineSpacingExtra">@dimen/very_small_margin</item>
-        <item name="android:layout_marginTop">@dimen/small_margin</item>
         <item name="android:textColor">?attr/colorSecondary</item>
         <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="card_content_container">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/small_margin</item>
+    </style>
+
+    <style name="linear_layout_content_container">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/medium_padding</item>
     </style>
 </resources>

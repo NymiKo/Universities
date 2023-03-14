@@ -4,16 +4,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.easyprog.android.App
-import com.easyprog.android.universities.adapters.UniversitiesListAdapter
 import com.easyprog.android.universities.fragments.universities_list.UniversitiesListViewModel
 import com.easyprog.android.universities.fragments.university_info.UniversityInfoViewModel
 
 class ViewModelFactory(
     private val app: App
-): ViewModelProvider.Factory {
+) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        val viewModel = when(modelClass) {
+        val viewModel = when (modelClass) {
             UniversitiesListViewModel::class.java -> {
                 UniversitiesListViewModel(app.repository)
             }

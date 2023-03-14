@@ -3,7 +3,6 @@ package com.easyprog.android.universities.fragments.universities_list
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.easyprog.android.data.Result
 import com.easyprog.android.universities.R
@@ -19,7 +18,7 @@ import com.easyprog.android.universities.utils.openFragment
 import com.easyprog.android.universities.utils.showSnackbar
 
 class UniversitiesListFragment :
-    BaseFragment<FragmentUniversitiesListBinding>(FragmentUniversitiesListBinding::inflate) {
+    BaseFragment<FragmentUniversitiesListBinding>(FragmentUniversitiesListBinding::inflate,) {
 
     private lateinit var _adapter: UniversitiesListAdapter
 

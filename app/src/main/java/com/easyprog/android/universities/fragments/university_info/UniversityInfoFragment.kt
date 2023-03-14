@@ -23,9 +23,13 @@ class UniversityInfoFragment :
 
     private val viewModel: UniversityInfoViewModel by viewModels { factory() }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.getUniversityInfo(idUniversity)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getUniversityInfo(idUniversity)
         loadContent()
         setupToolbar()
     }

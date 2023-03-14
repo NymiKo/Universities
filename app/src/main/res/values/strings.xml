@@ -3,9 +3,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="universities_list">Список университетов</string>
     <string name="location">Местоположение: %1$s</string>
-    <string name="entrance_points">Вступительные баллы</string>
-    <string name="budget_places">Бюджетные места</string>
-    <string name="dormitory">Общежитие</string>
-    <string name="date_of_application_submission">Дата подачи заявлений</string>
+    <string name="entrance_points"><u>Вступительные баллы</u></string>
+    <string name="budget_places"><u>Бюджетные места</u></string>
+    <string name="dormitory"><u>Общежитие</u></string>
+    <string name="date_of_application_submission"><u>Дата подачи</u></string>
     <string name="error_data_loading">Ошибка загрузки!</string>
 </resources>

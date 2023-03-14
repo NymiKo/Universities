@@ -1,12 +1,10 @@
 package com.easyprog.android.universities.utils
 
-import android.content.Context
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
 import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment

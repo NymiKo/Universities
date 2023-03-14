@@ -4,11 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.easyprog.android.data.FirebaseSource
 import com.easyprog.android.data.Result
 import com.easyprog.android.data.models.University
 import com.easyprog.android.domain.UniversityRepository
-import com.easyprog.android.domain.implementation.UniversityRepositoryImpl
 import kotlinx.coroutines.launch
 
 typealias MutableLiveResult<T> = MutableLiveData<Result<T>>
@@ -24,11 +22,9 @@ class UniversitiesListViewModel(private val repository: UniversityRepository) : 
     }
 
     private fun getUniversitiesList() {
-        if (_viewState.value == null) {
-            _viewState.value = Result.LOADING
-            viewModelScope.launch {
-                _viewState.value = repository.getUniversitiesList()
-            }
+        _viewState.value = Result.LOADING
+        viewModelScope.launch {
+            _viewState.value = repository.getUniversitiesList()
         }
     }
 }
