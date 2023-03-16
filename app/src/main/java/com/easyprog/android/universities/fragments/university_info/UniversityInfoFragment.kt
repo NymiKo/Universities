@@ -39,18 +39,22 @@ class UniversityInfoFragment :
 
     private fun loadContent() {
         viewModel.viewState.observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is Result.SUCCESS -> {
-                    setUniversityInfo(result.data)
-                    hideProgressbar()
-                }
-                is Result.ERROR -> {
-                    hideProgressbar()
-                    showSnackbar(binding.root, R.string.error_data_loading)
-                }
-                Result.LOADING -> {
-                    showProgressbar()
-                }
+            handleViewState(result)
+        }
+    }
+
+    private fun handleViewState(result: Result<UniversityInfo>) {
+        when (result) {
+            is Result.SUCCESS -> {
+                setUniversityInfo(result.data)
+                hideProgressbar()
+            }
+            is Result.ERROR -> {
+                hideProgressbar()
+                showSnackbar(binding.root, R.string.error_data_loading)
+            }
+            Result.LOADING -> {
+                showProgressbar()
             }
         }
     }
