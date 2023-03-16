@@ -18,7 +18,7 @@ import com.easyprog.android.universities.utils.openFragment
 import com.easyprog.android.universities.utils.showSnackbar
 
 class UniversitiesListFragment :
-    BaseFragment<FragmentUniversitiesListBinding>(FragmentUniversitiesListBinding::inflate,) {
+    BaseFragment<FragmentUniversitiesListBinding>(FragmentUniversitiesListBinding::inflate) {
 
     private lateinit var _adapter: UniversitiesListAdapter
 
@@ -67,9 +67,7 @@ class UniversitiesListFragment :
     }
 
     private fun setupToolbar() {
-        binding.collapsingToolbar.apply {
-            title = getString(R.string.app_name)
-        }
+        binding.collapsingToolbar.title = getString(R.string.app_name)
     }
 
     override fun onDestroyView() {

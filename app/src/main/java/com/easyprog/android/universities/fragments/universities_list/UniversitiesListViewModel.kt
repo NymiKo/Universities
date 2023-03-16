@@ -22,9 +22,10 @@ class UniversitiesListViewModel(private val repository: UniversityRepository) : 
     }
 
     private fun getUniversitiesList() {
-        _viewState.value = Result.LOADING
         viewModelScope.launch {
-            _viewState.value = repository.getUniversitiesList()
+            _viewState.value = Result.LOADING
+            val result = repository.getUniversitiesList()
+            _viewState.value = result
         }
     }
 }
