@@ -14,7 +14,7 @@ typealias LiveResult<T> = LiveData<Result<T>>
 
 class UniversitiesListViewModel(private val repository: UniversityRepository) : ViewModel() {
 
-    private val _viewState = MutableLiveResult<List<University>>()
+    private val _viewState = MutableLiveResult<List<University>>(Result.LOADING)
     val viewState: LiveResult<List<University>> = _viewState
 
     init {
@@ -23,7 +23,6 @@ class UniversitiesListViewModel(private val repository: UniversityRepository) : 
 
     private fun getUniversitiesList() {
         viewModelScope.launch {
-            _viewState.value = Result.LOADING
             val result = repository.getUniversitiesList()
             _viewState.value = result
         }

@@ -13,12 +13,11 @@ import kotlinx.coroutines.launch
 
 class UniversityInfoViewModel(private val repository: UniversityRepository) : ViewModel() {
 
-    private val _viewState = MutableLiveData<Result<UniversityInfo>>()
+    private val _viewState = MutableLiveData<Result<UniversityInfo>>(Result.LOADING)
     val viewState: LiveData<Result<UniversityInfo>> = _viewState
 
     fun getUniversityInfo(id: Int) {
         viewModelScope.launch {
-            _viewState.value = Result.LOADING
             val result = repository.getUniversityInfo(id)
             _viewState.value = result
         }
