@@ -17,9 +17,10 @@ class UniversityInfoViewModel(private val repository: UniversityRepository) : Vi
     val viewState: LiveData<Result<UniversityInfo>> = _viewState
 
     fun getUniversityInfo(id: Int) {
-        _viewState.value = Result.LOADING
         viewModelScope.launch {
-            _viewState.value = repository.getUniversityInfo(id)
+            _viewState.value = Result.LOADING
+            val result = repository.getUniversityInfo(id)
+            _viewState.value = result
         }
     }
 }
