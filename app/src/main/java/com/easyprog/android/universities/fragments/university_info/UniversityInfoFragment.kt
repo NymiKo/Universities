@@ -3,7 +3,6 @@ package com.easyprog.android.universities.fragments.university_info
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.easyprog.android.data.Result
 import com.easyprog.android.data.models.UniversityInfo
 import com.easyprog.android.universities.R
@@ -43,14 +42,14 @@ class UniversityInfoFragment :
             when (result) {
                 is Result.SUCCESS -> {
                     setUniversityInfo(result.data)
-                    binding.progress.visibility = View.GONE
+                    hideProgressbar()
                 }
                 is Result.ERROR -> {
-                    binding.progress.visibility = View.GONE
+                    hideProgressbar()
                     showSnackbar(binding.root, R.string.error_data_loading)
                 }
                 Result.LOADING -> {
-                    binding.progress.visibility = View.VISIBLE
+                    showProgressbar()
                 }
             }
         }
@@ -65,12 +64,24 @@ class UniversityInfoFragment :
             textBudgetPlaces.text = university.budget_places.fromHtmlToString()
             textDormitory.text = university.dormitory.fromHtmlToString()
             textDateOfApplicationSubmission.text = university.date_application.fromHtmlToString()
-            scrollContentView.visibility = View.VISIBLE
+            showScrollContent()
         }
     }
 
     private fun onBackPressed() {
         requireActivity().onBackPressedDispatcher.onBackPressed()
+    }
+
+    private fun showProgressbar() {
+        binding.progress.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressbar() {
+        binding.progress.visibility = View.GONE
+    }
+
+    private fun showScrollContent() {
+        binding.scrollContentView.visibility = View.VISIBLE
     }
 
     companion object {
