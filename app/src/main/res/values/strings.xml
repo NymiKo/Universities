@@ -8,4 +8,5 @@
     <string name="dormitory"><u>Общежитие</u></string>
     <string name="date_of_application_submission"><u>Дата подачи</u></string>
     <string name="error_data_loading">Ошибка загрузки!</string>
+    <string name="opening_hours_of_the_admissions_committee">Время работы приемной комисии</string>
 </resources>

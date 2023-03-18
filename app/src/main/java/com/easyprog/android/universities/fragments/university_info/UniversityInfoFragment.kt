@@ -1,8 +1,14 @@
 package com.easyprog.android.universities.fragments.university_info
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import com.easyprog.android.data.Result
 import com.easyprog.android.data.models.UniversityInfo
 import com.easyprog.android.universities.R
@@ -35,6 +41,16 @@ class UniversityInfoFragment :
 
     private fun setupToolbar() {
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+        binding.toolbar.inflateMenu(R.menu.university_info_menu)
+        binding.toolbar.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.opening_hours_admissions_committee -> {
+                    Toast.makeText(requireContext(), "Время работы!", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun loadContent() {
