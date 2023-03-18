@@ -15,6 +15,7 @@ import com.easyprog.android.universities.R
 import com.easyprog.android.universities.databinding.FragmentUniversityInfoBinding
 import com.easyprog.android.universities.fragments.base.BaseFragment
 import com.easyprog.android.universities.fragments.base.factory
+import com.easyprog.android.universities.fragments.reception_committee.ReceptionCommitteeFragment
 import com.easyprog.android.universities.utils.fromHtmlToString
 import com.easyprog.android.universities.utils.load
 import com.easyprog.android.universities.utils.showSnackbar
@@ -41,11 +42,15 @@ class UniversityInfoFragment :
 
     private fun setupToolbar() {
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+        createMenuPopupMenu()
+    }
+
+    private fun createMenuPopupMenu() {
         binding.toolbar.inflateMenu(R.menu.university_info_menu)
-        binding.toolbar.setOnMenuItemClickListener {
-            when(it.itemId) {
+        binding.toolbar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId) {
                 R.id.opening_hours_admissions_committee -> {
-                    Toast.makeText(requireContext(), "Время работы!", Toast.LENGTH_SHORT).show()
+                    ReceptionCommitteeFragment().show(childFragmentManager, "ReceptionCommitteeFragment")
                     true
                 }
                 else -> false
