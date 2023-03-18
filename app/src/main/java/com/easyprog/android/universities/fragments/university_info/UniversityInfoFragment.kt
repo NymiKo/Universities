@@ -1,14 +1,9 @@
 package com.easyprog.android.universities.fragments.university_info
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
+import android.text.Spanned
 import android.view.View
-import android.widget.Toast
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import com.easyprog.android.data.Result
 import com.easyprog.android.data.models.UniversityInfo
 import com.easyprog.android.universities.R
@@ -20,14 +15,13 @@ import com.easyprog.android.universities.utils.fromHtmlToString
 import com.easyprog.android.universities.utils.load
 import com.easyprog.android.universities.utils.showSnackbar
 
-private const val ARG_UNIVERSITY_ID = "id"
-
 class UniversityInfoFragment :
     BaseFragment<FragmentUniversityInfoBinding>(FragmentUniversityInfoBinding::inflate) {
 
     private val idUniversity: Int get() = requireArguments().getInt(ARG_UNIVERSITY_ID)
 
     private val viewModel: UniversityInfoViewModel by viewModels { factory() }
+    private var receptionCommittee: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,15 +36,16 @@ class UniversityInfoFragment :
 
     private fun setupToolbar() {
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }
-        createMenuPopupMenu()
+        createPopupMenu()
     }
 
-    private fun createMenuPopupMenu() {
+    private fun createPopupMenu() {
         binding.toolbar.inflateMenu(R.menu.university_info_menu)
         binding.toolbar.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId) {
                 R.id.opening_hours_admissions_committee -> {
-                    ReceptionCommitteeFragment().show(childFragmentManager, "ReceptionCommitteeFragment")
+                    val bottomSheetFragment = ReceptionCommitteeFragment.newInstance(receptionCommittee)
+                    bottomSheetFragment.show(childFragmentManager, "ReceptionCommitteeFragment")
                     true
                 }
                 else -> false
@@ -89,6 +84,7 @@ class UniversityInfoFragment :
             textBudgetPlaces.text = university.budget_places.fromHtmlToString()
             textDormitory.text = university.dormitory.fromHtmlToString()
             textDateOfApplicationSubmission.text = university.date_application.fromHtmlToString()
+            receptionCommittee = university.reception_committee
             showScrollContent()
         }
     }
@@ -110,6 +106,8 @@ class UniversityInfoFragment :
     }
 
     companion object {
+        private const val ARG_UNIVERSITY_ID = "id"
+
         @JvmStatic
         fun newInstance(id: Int) =
             UniversityInfoFragment().apply {
