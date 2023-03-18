@@ -64,10 +64,11 @@ class UniversityInfoFragment :
             is Result.SUCCESS -> {
                 setUniversityInfo(result.data)
                 hideProgressbar()
+                showScrollContent()
             }
             is Result.ERROR -> {
                 hideProgressbar()
-                showSnackbar(binding.root, R.string.error_data_loading)
+                showSnackbar(requireView(), R.string.error_data_loading)
             }
             Result.LOADING -> {
                 showProgressbar()
@@ -85,7 +86,6 @@ class UniversityInfoFragment :
             textDormitory.text = university.dormitory.fromHtmlToString()
             textDateOfApplicationSubmission.text = university.date_application.fromHtmlToString()
             receptionCommittee = university.reception_committee
-            showScrollContent()
         }
     }
 

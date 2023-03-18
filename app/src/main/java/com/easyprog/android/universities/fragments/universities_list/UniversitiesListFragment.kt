@@ -39,7 +39,7 @@ class UniversitiesListFragment :
                 }
                 is Result.ERROR -> {
                     binding.progress.visibility = View.GONE
-                    showSnackbar(binding.root, R.string.error_data_loading)
+                    showSnackbar(requireView(), R.string.error_data_loading)
                 }
                 Result.LOADING -> binding.progress.visibility = View.VISIBLE
             }
