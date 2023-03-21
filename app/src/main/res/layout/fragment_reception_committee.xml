@@ -8,10 +8,19 @@
 
     <TextView
         style="@style/text_content_header_style"
-        android:text="@string/opening_hours_of_the_admissions_committee" />
+        android:text="@string/opening_hours_of_the_reception_committee" />
 
     <TextView
         android:id="@+id/text_reception_committee_time"
+        style="@style/text_content_style"
+        android:textSize="18sp"/>
+
+    <TextView
+        style="@style/text_content_header_style"
+        android:text="@string/phone_reception_committee" />
+
+    <TextView
+        android:id="@+id/text_reception_committee_phone"
         style="@style/text_content_style"
         android:textSize="18sp"/>
 

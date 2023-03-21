@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/opening_hours_admissions_committee"
-        android:title="@string/opening_hours_of_the_admissions_committee"
+        android:title="@string/opening_hours_of_the_reception_committee"
         app:showAsAction="always"
         android:icon="@drawable/ic_calendar"/>
 
