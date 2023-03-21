@@ -22,6 +22,7 @@ class UniversityInfoFragment :
 
     private val viewModel: UniversityInfoViewModel by viewModels { factory() }
     private var receptionCommittee: String = ""
+    private var phone: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +45,7 @@ class UniversityInfoFragment :
         binding.toolbar.setOnMenuItemClickListener { menuItem ->
             when(menuItem.itemId) {
                 R.id.opening_hours_admissions_committee -> {
-                    val bottomSheetFragment = ReceptionCommitteeFragment.newInstance(receptionCommittee)
+                    val bottomSheetFragment = ReceptionCommitteeFragment.newInstance(receptionCommittee, phone)
                     bottomSheetFragment.show(childFragmentManager, "ReceptionCommitteeFragment")
                     true
                 }
@@ -85,6 +86,7 @@ class UniversityInfoFragment :
             textBudgetPlaces.text = university.budget_places.fromHtmlToString()
             textDormitory.text = university.dormitory.fromHtmlToString()
             textDateOfApplicationSubmission.text = university.date_application.fromHtmlToString()
+            phone = university.phone
             receptionCommittee = university.reception_committee
         }
     }

@@ -34,11 +34,13 @@ class ReceptionCommitteeFragment : BottomSheetDialogFragment() {
 
     companion object {
         private const val ARG_RECEPTION_COMMITTEE = "reception_committee"
+        private const val ARG_PHONE = "phone"
 
         @JvmStatic
-        fun newInstance(reception_committee: String) = ReceptionCommitteeFragment().apply {
+        fun newInstance(reception_committee: String, phone: String) = ReceptionCommitteeFragment().apply {
             arguments = Bundle().apply {
                 putString(ARG_RECEPTION_COMMITTEE, reception_committee)
+                putString(ARG_PHONE, phone)
             }
         }
     }
