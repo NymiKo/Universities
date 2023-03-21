@@ -8,5 +8,6 @@ data class UniversityInfo(
     val budget_places: String = "",
     val dormitory: String = "",
     val date_application: String = "",
-    val reception_committee: String =""
+    val reception_committee: String = "",
+    val phone: String = ""
 )
