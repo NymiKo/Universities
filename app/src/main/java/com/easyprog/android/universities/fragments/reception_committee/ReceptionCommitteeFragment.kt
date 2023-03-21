@@ -17,6 +17,7 @@ class ReceptionCommitteeFragment : BottomSheetDialogFragment() {
     override fun getTheme(): Int = R.style.AppBottomSheetDialogTheme
 
     private val receptionCommittee get() = requireArguments().getString(ARG_RECEPTION_COMMITTEE)
+    private val phone get() = requireArguments().getString(ARG_PHONE)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +30,10 @@ class ReceptionCommitteeFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.textReceptionCommitteeTime.text = receptionCommittee?.fromHtmlToString()
+        binding.apply {
+            textReceptionCommitteeTime.text = receptionCommittee?.fromHtmlToString()
+            textReceptionCommitteePhone.text = phone?.fromHtmlToString()
+        }
     }
 
     companion object {

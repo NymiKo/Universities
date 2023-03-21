@@ -17,7 +17,8 @@
 
     <TextView
         style="@style/text_content_header_style"
-        android:text="@string/phone_reception_committee" />
+        android:text="@string/phone_reception_committee"
+        android:paddingTop="16dp"/>
 
     <TextView
         android:id="@+id/text_reception_committee_phone"
